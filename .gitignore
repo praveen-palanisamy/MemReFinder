@@ -1,0 +1,10 @@
+node_modules
+*.log
+.next
+app
+dist
+# local env files
+.env*.local
+# typescript
+*.tsbuildinfo
+next-env.d.ts

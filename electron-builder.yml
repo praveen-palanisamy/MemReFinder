@@ -1,0 +1,12 @@
+appId: com.praveenp.memrefinder
+productName: MemReFinder: Chat with your Data
+copyright: Copyright © 2023 Praveen Palanisamy
+directories:
+  output: dist
+  buildResources: resources
+files:
+  - from: .
+    filter:
+      - package.json
+      - app
+publish: null
