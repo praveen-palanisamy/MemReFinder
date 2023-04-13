@@ -9,27 +9,31 @@ export default function FileQandA() {
   const [files, setFiles] = useState<FileLite[]>([]);
 
   return (
-    <div className="flex items-left text-left h-screen flex-col">
+    <div className="flex h-screen flex-col">
       <Head>
         <title>MemReFinder</title>
       </Head>
-      <div className="max-w-3xl mx-auto m-8 space-y-8 text-gray-800">
-        <h1 className="text-4xl">MemReFinder: Chat with your Data</h1>
+      <div className="text-gray-800">
+        <h1 className="text-center text-4xl">MemReFinder: Chat with your Data</h1>
 
         <div className="">
-          Search for answers from the content in your files.
+          <center> Chat with your Documents and Files to find Answers.</center>
           <br />
-          1. Load your files: 
-        </div>
-
-        <FileUploadArea
-          handleSetFiles={setFiles}
-          maxNumFiles={100}
-          maxFileSizeMB={25}
-        />
-
-        <FileQandAArea files={files} />
-      </div>
+          </div>
+            <div className="grid grid-flow-row-dense grid-cols-3 grid-gap">
+              <div className="col-span-1 text-center"> 1. Load your files: 
+                <FileUploadArea
+                  handleSetFiles={setFiles}
+                  maxNumFiles={100}
+                  maxFileSizeMB={25}
+                />
+              </div>
+            <div className="col-span-2 text-center">
+              2. Ask a question based on the content of your files:
+              <FileQandAArea files={files} />
+            </div>
+          </div>
+    </div>
     </div>
   );
 }

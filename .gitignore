@@ -3,6 +3,7 @@ node_modules
 .next
 app
 dist
+data
 # local env files
 .env*.local
 # typescript
