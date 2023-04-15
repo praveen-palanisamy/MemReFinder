@@ -1,8 +1,11 @@
-name: Build & Draft Release
+name: Build for Desktop & Draft Release
 
 on:
   push:
     branches: [main]
+
+  # Allow running this workflow manually from the Actions tab
+  workflow_dispatch:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
