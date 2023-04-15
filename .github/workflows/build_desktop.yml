@@ -1,4 +1,4 @@
-name: Build App
+name: Build & Draft Release
 
 on:
   push:
@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   build:
-    name: Build App
+    name: Build & Draft Release
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
@@ -36,44 +36,12 @@ jobs:
         run: |
           sudo apt-get install -y rpm
           sudo snap install snapcraft --classic
-          npx nextron build --linux --x64
+          npx nextron build --linux --x64 --publish=always
 
       - if: startsWith(matrix.os, 'windows')
         name: Build Windows App
-        run: npx nextron build --win --x64 --arm64
+        run: npx nextron build --win --x64 --arm64 --publish=always
 
       - if: startsWith(matrix.os, 'macos')
         name: Build macOS App
-        run: npx nextron build --mac --x64 --universal
-
-      - name: Archive build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ matrix.os }}
-          path: dist/*.*
-
-  # After build and archive artifacts, create a draft release with artifacts
-  draft-release:
-    needs: build # Wait for build job to finish & artifacts to be available
-    runs-on: ubuntu-latest
-    steps:
-      - name: Fetch saved artifacts
-        uses: actions/download-artifact@v3
-        with:
-          path: dist
-
-      - name: Create/Update draft release & attach artifacts
-        uses: softprops/action-gh-release@v1
-        with:
-          draft: true
-          prerelease: true
-          files: |
-            dist/**/*.exe
-            dist/**/*.dmg
-            dist/**/*.AppImage
-            dist/**/*.snap
-            dist/**/*.deb
-            dist/**/*.rpm
-            dist/**/*.zip
-            dist/**/*.tar.gz
-            dist/**/*.blockmap
+        run: npx nextron build --mac --x64 --universal --publish=always
