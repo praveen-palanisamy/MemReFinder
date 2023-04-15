@@ -25,15 +25,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Nextron app
-
       - if: startsWith(matrix.os, 'ubuntu')
+        name: Build Linux App
         run: |
           apt install -y rpm  
           npx nextron build --linux --x64 --arm64
 
       - if: startsWith(matrix.os, 'windows')
+        name: Build Windows App
         run: npx nextron build --win --x64 --arm64
 
       - if: startsWith(matrix.os, 'macos')
+        name: Build macOS App
         run: npx nextron build --mac --x64 --arm64 --universal
