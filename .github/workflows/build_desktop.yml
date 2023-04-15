@@ -28,7 +28,7 @@ jobs:
       - if: startsWith(matrix.os, 'ubuntu')
         name: Build Linux App
         run: |
-          apt install -y rpm  
+          sudo apt-get install -y rpm
           npx nextron build --linux --x64 --arm64
 
       - if: startsWith(matrix.os, 'windows')
