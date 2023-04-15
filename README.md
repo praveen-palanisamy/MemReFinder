@@ -1,18 +1,17 @@
-# MemReFinder: Chat with your Data
+# MemReFinder: Chat with your Documents and Files
 
-Memory and Retrieval-Augmented Finder (File Explorer) App to chat with your documents and files to find answers powered by OpenAI GPT models. You can load multiple DOCX, PDF, CSV, Markdown, HTML or other text files and ask questions related to their content, and the app will use embeddings and GPT to generate answers from the most relevant files and sections within your files.
+Memory and Retrieval-Augmented Finder (File Explorer) App to chat with your data to find answers powered by OpenAI GPT models. You can load multiple DOCX, PDF, CSV, Markdown, HTML or other text files and ask questions related to their content, and the app will use embeddings and GPT to generate answers from the most relevant files and sections within your files.
 
 ## How does it help you?
 
-* Find answers to your personal or business questions on data that is not public or available to ChatGPT
-* Use your personal/organizational/private files locally to find answers to questions
-* Build your own knowledge base and ask questions to it
-* Empowers you and your files with the power of GPT-3.5+
+- Find answers to your personal or business questions on data that is not public or available to ChatGPT
+- Use your personal/organizational/private files locally to find answers to questions
+- Build your own knowledge base and ask questions to it
+- Empowers you and your files with the power of GPT-3.5+
 
 ## Requirements
 
 To use the app, you need an OpenAI API key. You can create a new API key [here](https://beta.openai.com/account/api-keys).
-
 
 ## Development
 
