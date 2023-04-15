@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   build:
     name: Build App
@@ -37,4 +40,12 @@ jobs:
 
       - if: startsWith(matrix.os, 'macos')
         name: Build macOS App
-        run: npx nextron build --mac --x64 --arm64 --universal
+        run: npx nextron build --mac --x64 --universal
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.os }}
+          path: |
+            dist
+            !dist/linux-unpacked
