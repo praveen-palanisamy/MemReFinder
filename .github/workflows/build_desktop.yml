@@ -1,0 +1,51 @@
+name: Build App
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build App
+    strategy:
+      matrix:
+        os: [ macos-latest, ubuntu-latest, windows-latest ]
+        node-version: [ latest ]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Clone repository 
+        uses: actions/checkout@v3
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }} 
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Nextron app
+
+      - if: startsWith(matrix.os, 'ubuntu')
+        run: | 
+        apt install -y rpm  
+        npx nextron build --linux --x64 --arm64
+
+      - if: startsWith(matrix.os, 'windows')
+        run: npx nextron build --win --x64 --arm64
+      
+      - if: startsWith(matrix.os, 'macos')
+        run: npx nextron build --mac --x64 --arm64 --universal
+
+      - name: Deploy to gh-pages
+        if: contains(github.event.pull_request.body, '/deploy')
+        uses: actions/deploy@v2
+        with:
+          branch: gh-pages
+          directory: build
+          git_user_name: ${{ secrets.GITHUB_USER_NAME }}
+          git_user_email: ${{ secrets.GITHUB_USER_EMAIL }}
+          git_token: ${{ secrets.GITHUB_DEPLOY_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

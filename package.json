@@ -4,10 +4,15 @@
   "description": "GPT-powered File Explorer App to Chat with your documents and files to find answers to your questions",
   "version": "0.0.1",
   "author": "Praveen Palanisamy <praveen.palanisamy@outlook.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/praveen-palanisamy/MemReFinder"
+  },
   "main": "app/background.js",
   "scripts": {
     "dev": "nextron",
     "build": "nextron build",
+    "build:all": "nextron build --all",
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
@@ -47,5 +52,33 @@
     "pdf-parse": "^1.1.1",
     "react": "18.2.0",
     "react-markdown": "^8.0.5"
+  },
+  "build": {
+    "appId": "com.praveenp.memrefinder",
+    "productName": "MemReFinder",
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "zip",
+        "portable"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm",
+        "snap",
+        "tar.gz",
+        "zip"
+      ]
+    }
   }
 }
