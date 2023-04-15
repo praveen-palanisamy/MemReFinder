@@ -36,7 +36,7 @@ jobs:
         run: |
           sudo apt-get install -y rpm
           sudo snap install snapcraft --classic
-          npx nextron build --linux --x64 --arm64
+          npx nextron build --linux --x64
 
       - if: startsWith(matrix.os, 'windows')
         name: Build Windows App
@@ -51,6 +51,7 @@ jobs:
         with:
           name: ${{ matrix.os }}
           path: dist/*.*
+
   # After build and archive artifacts, create a draft release with artifacts
   draft-release:
     needs: build # Wait for build job to finish & artifacts to be available
