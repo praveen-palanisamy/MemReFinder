@@ -1,6 +1,7 @@
 import { app } from 'electron';
 import serve from 'electron-serve';
 import { createWindow } from './helpers';
+import { autoUpdater } from 'electron-updater';
 
 const isProd: boolean = process.env.NODE_ENV === 'production';
 
@@ -23,9 +24,12 @@ if (isProd) {
   } else {
     const port = process.argv[2];
     await mainWindow.loadURL(`http://localhost:${port}/`);
-    mainWindow.webContents.openDevTools();
   }
 })();
+
+app.on('ready', () => {
+  autoUpdater.checkForUpdatesAndNotify();
+});
 
 app.on('window-all-closed', () => {
   app.quit();
