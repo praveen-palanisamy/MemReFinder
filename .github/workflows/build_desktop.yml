@@ -32,6 +32,7 @@ jobs:
         name: Build Linux App
         run: |
           sudo apt-get install -y rpm
+          sudo snap install snapcraft --classic
           npx nextron build --linux --x64 --arm64
 
       - if: startsWith(matrix.os, 'windows')
@@ -42,10 +43,17 @@ jobs:
         name: Build macOS App
         run: npx nextron build --mac --x64 --universal
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+      - name: Create/Update draft release & attach artifacts
+        uses: softprops/action-gh-release@v1
         with:
-          name: ${{ matrix.os }}
-          path: |
-            dist
-            !dist/linux-unpacked
+          draft: true
+          prerelease: true
+          files: |
+            dist/*.exe
+            dist/*.dmg
+            dist/*.AppImage
+            dist/*.snap
+            dist/*.deb
+            dist/*.rpm
+            dist/*.zip
+            dist/*.tar.gz
