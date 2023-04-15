@@ -7,6 +7,9 @@ on:
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+permissions:
+  contents: write # for creating release draft
+
 jobs:
   build:
     name: Build App
@@ -42,6 +45,21 @@ jobs:
       - if: startsWith(matrix.os, 'macos')
         name: Build macOS App
         run: npx nextron build --mac --x64 --universal
+
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.os }}
+          path: dist/*.*
+  # After build and archive artifacts, create a draft release with artifacts
+  draft-release:
+    needs: build # Wait for build job to finish & artifacts to be available
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch saved artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: dist
 
       - name: Create/Update draft release & attach artifacts
         uses: softprops/action-gh-release@v1
