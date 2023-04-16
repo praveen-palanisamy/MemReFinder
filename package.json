@@ -10,14 +10,14 @@
   },
   "main": "main/index.js",
   "scripts": {
-    "dev": "electron .",
-    "build": "npm run clean && npm run build-electron",
+    "dev": "npm run build && electron .",
+    "build": "npm run clean && npm run build:electron",
     "dist": "npm run build && electron-builder",
     "postinstall": "electron-builder install-app-deps",
     "clean": "rimraf dist renderer/.next main/*.js main/**/*.js",
-    "build-main": "tsc -p main",
-    "build-renderer": "next build renderer",
-    "build-electron": "npm run build-renderer && npm run build-main"
+    "build:main": "tsc -p main",
+    "build:renderer": "next build renderer",
+    "build:electron": "npm run build:renderer && npm run build:main"
   },
   "dependencies": {
     "autoprefixer": "^10.4.7",
