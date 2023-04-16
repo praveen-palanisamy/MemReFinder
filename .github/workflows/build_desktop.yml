@@ -39,12 +39,12 @@ jobs:
         run: |
           sudo apt-get install -y rpm
           sudo snap install snapcraft --classic
-          npx nextron build --linux --x64 --publish=always
+          npx electron-builder build --linux --x64 --publish=always
 
       - if: startsWith(matrix.os, 'windows')
         name: Build Windows App
-        run: npx nextron build --win --x64 --arm64 --publish=always
+        run: npx electron-builder build --win --x64 --arm64 --publish=always
 
       - if: startsWith(matrix.os, 'macos')
         name: Build macOS App
-        run: npx nextron build --mac --x64 --universal --publish=always
+        run: npx electron-builder build --mac --x64 --universal --publish=always
