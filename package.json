@@ -10,8 +10,11 @@
   },
   "main": "main/index.js",
   "scripts": {
-    "dev": "npm run build && electron .",
-    "build": "npm run clean && npm run build:electron",
+    "dev": "next renderer",
+    "build": "next build renderer",
+    "start": "next start renderer",
+    "dev:desktop": "npm run build && electron .",
+    "build:desktop": "npm run clean && npm run build:electron",
     "dist": "npm run build && electron-builder",
     "postinstall": "electron-builder install-app-deps",
     "clean": "rimraf dist renderer/.next main/*.js main/**/*.js",
