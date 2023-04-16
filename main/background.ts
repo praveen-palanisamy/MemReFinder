@@ -1,7 +1,7 @@
 import { app } from 'electron';
 import serve from 'electron-serve';
 import { createWindow } from './helpers';
-import { autoUpdater } from 'electron-updater';
+// import { autoUpdater } from 'electron-updater';
 
 const isProd: boolean = process.env.NODE_ENV === 'production';
 
@@ -22,14 +22,14 @@ if (isProd) {
   if (isProd) {
     await mainWindow.loadURL('app://./index.html');
   } else {
-    const port = process.argv[2];
+    const port = process.argv[2] || 3000;
     await mainWindow.loadURL(`http://localhost:${port}/`);
   }
 })();
 
-app.on('ready', () => {
-  autoUpdater.checkForUpdatesAndNotify();
-});
+// app.on('ready', () => {
+//   autoUpdater.checkForUpdatesAndNotify();
+// });
 
 app.on('window-all-closed', () => {
   app.quit();
