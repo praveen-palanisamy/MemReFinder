@@ -34,17 +34,20 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Build for Desktop
+        run: npm run build:desktop
+
       - if: startsWith(matrix.os, 'ubuntu')
-        name: Build Linux App
+        name: Pack for Linux
         run: |
           sudo apt-get install -y rpm
           sudo snap install snapcraft --classic
           npx electron-builder build --linux --x64 --publish=always
 
       - if: startsWith(matrix.os, 'windows')
-        name: Build Windows App
+        name: Pack for Windows
         run: npx electron-builder build --win --x64 --arm64 --publish=always
 
       - if: startsWith(matrix.os, 'macos')
-        name: Build macOS App
+        name: Pack for macOS
         run: npx electron-builder build --mac --x64 --universal --publish=always
