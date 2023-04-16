@@ -1,5 +1,7 @@
 # MemReFinder: Chat with your Documents and Files
 
+https://user-images.githubusercontent.com/4770482/232273659-4fa80c21-7ebd-4894-bcb5-68610951b7c9.mp4
+
 Memory and Retrieval-Augmented Finder (File Explorer) App to chat with your data to find answers powered by OpenAI GPT models. You can load multiple DOCX, PDF, CSV, Markdown, HTML or other text files and ask questions related to their content, and the app will use embeddings and GPT to generate answers from the most relevant files and sections within your files.
 
 ## How does it help you?
