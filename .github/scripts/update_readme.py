@@ -4,7 +4,8 @@ import re
 from github import Github
 
 GITHUB_TOKEN = os.environ["GITHUB_TOKEN"]
-REPO_NAME = os.environ["GITHUB_ACTION_REPOSITORY"]
+REPO_NAME = os.environ["GITHUB_REPOSITORY"]
+print(f"Repo name: {REPO_NAME}")
 
 g = Github(GITHUB_TOKEN)
 repo = g.get_repo(REPO_NAME)

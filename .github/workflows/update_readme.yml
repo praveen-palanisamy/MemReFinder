@@ -3,6 +3,8 @@ name: Update README with Releases
 on:
   release:
     types: [published]
+  # Allow running this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   update-readme:
@@ -19,7 +21,7 @@ jobs:
       - name: Update README.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_ACTION_REPOSITORY: ${{ github.repository }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: python .github/scripts/update_readme.py
 
       - name: Commit and push changes
