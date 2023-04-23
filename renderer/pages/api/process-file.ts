@@ -4,6 +4,7 @@ import formidable, { Fields, Files } from "formidable"; // to handle file upload
 import { TextEmbedding } from "../../types/file";
 import extractTextFromFile from "../../services/extractTextFromFile";
 import { createEmbeddings } from "../../services/createEmbeddings";
+import { storeEmbeddings } from "../../services/storeEmbeddings";
 
 // Disable the default body parser to handle file uploads
 export const config = { api: { bodyParser: false } };
@@ -54,6 +55,9 @@ export default async function handler(
     const { meanEmbedding, chunks } = await createEmbeddings({
       text,
     });
+
+    // Store embeddings in the database
+    await storeEmbeddings({filepath:file.filepath, filetype: file.mimetype, text, meanEmbedding, chunks})
 
     res.status(200).json({ text, meanEmbedding, chunks });
   } catch (error: any) {

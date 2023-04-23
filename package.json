@@ -13,7 +13,7 @@
     "dev": "next renderer",
     "build": "next build renderer",
     "start": "next start renderer",
-    "dev:desktop": "npm run build:dekstop && electron .",
+    "dev:desktop": "npm run build:desktop && electron .",
     "build:desktop": "npm run clean && npm run build:electron",
     "dist": "npm run build:desktop && electron-builder",
     "postinstall": "electron-builder install-app-deps",
@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@prisma/client": "^4.13.0",
+    "@supabase/supabase-js": "^2.21.0",
     "autoprefixer": "^10.4.7",
     "axios": "^1.2.3",
     "clsx": "^1.2.1",
