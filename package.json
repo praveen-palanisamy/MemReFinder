@@ -23,6 +23,7 @@
     "build:electron": "npm run build:renderer && npm run build:main"
   },
   "dependencies": {
+    "@prisma/client": "^4.13.0",
     "autoprefixer": "^10.4.7",
     "axios": "^1.2.3",
     "clsx": "^1.2.1",
