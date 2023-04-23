@@ -4,8 +4,12 @@ node_modules
 app
 dist
 data
+# Private env vars
+.env
 # local env files
 .env*.local
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# Local DB
+*.db
