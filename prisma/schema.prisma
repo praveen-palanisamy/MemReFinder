@@ -1,11 +1,13 @@
-datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_DATABASE_URL")
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
 }
 
-generator client {
-  provider = "prisma-client-js"
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  directUrl  = env("DIRECT_DATABASE_URL")
+  extensions = [pgvector(map: "vector", schema: "extensions")]
 }
 
 model User {
@@ -16,22 +18,22 @@ model User {
 }
 
 model File {
-  id            Int             @id @default(autoincrement())
-  name          String          @unique
+  id            Int                    @id @default(autoincrement())
+  name          String                 @unique
   size          Int?
   type          String?
   url           String?
   extractedText String?
-  chunks        TextEmbedding[] // Make this optional when Prisma supports optional lists
-  meanEmbedding Int[] // Make this optional when Prisma supports optional lists
-  User          User?           @relation(fields: [userId], references: [id])
+  meanEmbedding Unsupported("vector")?
   userId        Int?
+  User          User?                  @relation(fields: [userId], references: [id])
+  chunks        TextEmbedding[] // Make this optional when Prisma supports optional lists
 }
 
 model TextEmbedding {
-  id        Int    @id @default(autoincrement())
-  text      String @unique
-  embedding Int[]
-  file      File?  @relation(fields: [fileId], references: [id])
+  id        Int                    @id @default(autoincrement())
+  text      String                 @unique
+  embedding Unsupported("vector")?
+  file      File?                  @relation(fields: [fileId], references: [id])
   fileId    Int?
 }

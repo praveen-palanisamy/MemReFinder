@@ -5,7 +5,7 @@
 
 <!-- tocstop -->
 
-## 0. Setup VectorDB and Schema
+## 0. Setup VectorDB
 
 1. Define DB `provider` and `url` in `prisma/schema.prisma` file as follows:
 
@@ -30,8 +30,30 @@ DIRECT_DATABASE_URL="postgresql://<user>:<password>@<host>:<port>/<database>"
 - Notice that the `DATABASE_URL` is prefixed with `postgres://` and the `DIRECT_DATABASE_URL` is prefixed with `postgresql://`.
 - (optional) Use percent encoding to escape special characters (if any) in the password.
 
+## 0. Setup Schema
+
 1. Use Prisma Schema Language to define the data model in a schema file. The schema file is named `prisma/schema.prisma` by convention.
 1. When the schema is in a relatively stable state, create the DB schema for the first time Run: `npx prisma migrate dev --name init` to create the database schema and generate Prisma Client.
+1. Update `schema.prisma` to include `postgresqlExtensions` `previewFeatures`
+
+```prisma
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+```
+
+1. (optional) Pull the extensions list from the database: `npx prisma db pull`
+1. Add the `pgvector` extension to the `datasource` block in `schema.prisma`:
+
+```prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_DATABASE_URL")
+  extensions = [pgvector(map: "vector", schema: "extensions")]
+}
+```
 
 ## 1. Update VectorDB schema
 
