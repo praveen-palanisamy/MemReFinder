@@ -20,7 +20,7 @@ datasource db {
 1. Setup `.env` file with the following variables:
 
 ```bash
-DATABASE_URL="postgres://<user>:<password>@<host>:<port>/<database>"
+DATABASE_URL="postgres://<user>:<password>@<host>:<port>/<database>?pgbouncer=true"
 DIRECT_DATABASE_URL="postgresql://<user>:<password>@<host>:<port>/<database>"
 ```
 
