@@ -1,11 +1,36 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
 
 generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+model User {
+  id    Int     @id @default(autoincrement())
+  email String? @unique
+  name  String?
+  files File[]
+}
+
+model File {
+  id            Int             @id @default(autoincrement())
+  name          String          @unique
+  size          Int?
+  type          String?
+  url           String?
+  extractedText String?
+  chunks        TextEmbedding[] // Make this optional when Prisma supports optional lists
+  meanEmbedding Int[] // Make this optional when Prisma supports optional lists
+  User          User?           @relation(fields: [userId], references: [id])
+  userId        Int?
+}
+
+model TextEmbedding {
+  id        Int    @id @default(autoincrement())
+  text      String @unique
+  embedding Int[]
+  file      File?  @relation(fields: [fileId], references: [id])
+  fileId    Int?
 }
