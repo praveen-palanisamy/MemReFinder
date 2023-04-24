@@ -13,6 +13,7 @@ import { compact } from "lodash";
 import LoadingText from "./LoadingText";
 import { FileLite } from "../types/file";
 import FileViewerList from "./FileViewerList";
+import { storeEmbeddings } from "../services/storeEmbeddings";
 
 type FileUploadAreaProps = {
   handleSetFiles: Dispatch<SetStateAction<FileLite[]>>;
@@ -89,6 +90,8 @@ function FileUploadArea(props: FileUploadAreaProps) {
                     extractedText: text,
                   };
                   console.log(fileObject);
+                  // Store embeddings in the database
+                  await storeEmbeddings(fileObject);
 
                   return fileObject;
                 } else {
@@ -166,8 +169,8 @@ function FileUploadArea(props: FileUploadAreaProps) {
             <div className="text-gray-500 flex flex-col items-center text-center">
               <ArrowUpTrayIcon className="w-7 h-7 mb-4" />
               <p className="mb-2 text-sm">
-                <span className="font-semibold">Click to load</span> or drag
-                and drop
+                <span className="font-semibold">Click to load</span> or drag and
+                drop
               </p>
               <p className="text-xs">
                 TXT, PDF, DOCX or MD (max {props.maxFileSizeMB}MB per file)
