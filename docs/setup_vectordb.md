@@ -1,11 +1,16 @@
+# Setting up a Vector Database store using Prisma and PostgreSQL
+
+[Prisma](https://prisma.io) is for ORM and PostgreSQL is for the database. Prisma is used to define the database schema and auto generate the Prisma Client. Prisma Client is used to interact with the database.
+
 <!-- toc -->
 
-- [0. Setup VectorDB](#0-setup-vectordb)
-- [1. Update VectorDB](#1-update-vectordb)
+- [0. Setup VectorDB using Prisma](#0-setup-vectordb-using-prisma)
+- [0. Setup Schema](#0-setup-schema)
+- [1. Update VectorDB schema](#1-update-vectordb-schema)
 
 <!-- tocstop -->
 
-## 0. Setup VectorDB
+## 0. Setup VectorDB using Prisma
 
 1. Define DB `provider` and `url` in `prisma/schema.prisma` file as follows:
 
@@ -55,6 +60,8 @@ datasource db {
 }
 ```
 
+> NOTE: The `map` and `schema` values are optional. The values `vector` and `extensions` respectively work when using [Supabase](https://supabase.com).
+
 ## 1. Update VectorDB schema
 
 1. Make changes to prototype and develop the Prisma schema file as necessary.
@@ -63,3 +70,55 @@ datasource db {
 1. Run `npx prisma migrate dev --name <migration-name>` to create a new migration and apply it to the database.
 1. Run `npx prisma generate` to generate Prisma Client.
 1. (Optional) Run `npx prisma studio` to open the Prisma Studio GUI to view the data in the database.
+
+## Issues
+
+1. Composite types are ignored by Prisma. Prisma only supports composite types for MongoDB.
+
+The following simple model is not feasible with Prisma:
+
+```prisma
+model File {
+  id        Int      @id @default(autoincrement())
+  name      String
+  chunks Embedding[]  // Composite type. Not supported by Prisma.
+}
+
+model Embedding{
+  id     Int    @id @default(autoincrement())
+  embedding Unsupported("vector")
+}
+```
+
+The generated Prisma Client will not include the `chunks` field in the `File` model.
+
+The generated `migrations.sql` looks like this:
+
+```sql
+-- CreateExtension
+CREATE EXTENSION IF NOT EXISTS "vector" WITH SCHEMA "extensions";
+
+-- CreateTable
+CREATE TABLE "File" (
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+
+    CONSTRAINT "File_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Embedding" (
+    "id" SERIAL NOT NULL,
+    "text" TEXT NOT NULL,
+    "embedding" vector,
+
+    CONSTRAINT "TextEmbedding_pkey" PRIMARY KEY ("id")
+);
+```
+
+Related issues/feature-requests [Reuse collections of fields inside models](https://github.com/prisma/prisma/issues/2371) and, [Support for native DB composite types](https://github.com/prisma/prisma/issues/4263) has been open since 2020.
+
+## Notes and references
+
+- Use Baselining to avoid resetting the database in production. [See Baselining docs](https://www.prisma.io/docs/guides/migrate/developing-with-prisma-migrate/baselining#baselining-a-database)
+- See [Troubleshooting section](https://supabase.com/docs/guides/integrations/prisma#troubleshooting) for using Prisma with (Supabase) Auth, Row Level Security, and extensions.

@@ -25,9 +25,9 @@ model File {
   url           String?
   extractedText String?
   meanEmbedding Unsupported("vector")?
+  chunks        TextEmbedding[]
   userId        Int?
   User          User?                  @relation(fields: [userId], references: [id])
-  chunks        TextEmbedding[] // Make this optional when Prisma supports optional lists
 }
 
 model TextEmbedding {
