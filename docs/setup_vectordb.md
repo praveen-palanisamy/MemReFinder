@@ -7,6 +7,8 @@
 - [0. Setup VectorDB using Prisma](#0-setup-vectordb-using-prisma)
 - [0. Setup Schema](#0-setup-schema)
 - [1. Update VectorDB schema](#1-update-vectordb-schema)
+- [Issues](#issues)
+- [Notes and References](#notes-and-references)
 
 <!-- tocstop -->
 
@@ -121,4 +123,8 @@ Related issues/feature-requests [Reuse collections of fields inside models](http
 ## Notes and references
 
 - Use Baselining to avoid resetting the database in production. [See Baselining docs](https://www.prisma.io/docs/guides/migrate/developing-with-prisma-migrate/baselining#baselining-a-database)
+  For example, to baseline the database with the current schema, you can run:
+  ```prisma
+  npx prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script > prisma/migrations/0_init/migration.sql
+  ```
 - See [Troubleshooting section](https://supabase.com/docs/guides/integrations/prisma#troubleshooting) for using Prisma with (Supabase) Auth, Row Level Security, and extensions.
