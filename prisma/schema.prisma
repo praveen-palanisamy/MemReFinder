@@ -18,22 +18,22 @@ model User {
 }
 
 model File {
-  id            Int                    @id @default(autoincrement())
-  name          String                 @unique
+  id            Int                          @id @default(autoincrement())
+  name          String                       @unique
   size          Int?
   type          String?
   url           String?
   extractedText String?
-  meanEmbedding Unsupported("vector")?
+  meanEmbedding Unsupported("vector(1536)")?
   chunks        TextEmbedding[]
   userId        Int?
-  User          User?                  @relation(fields: [userId], references: [id])
+  User          User?                        @relation(fields: [userId], references: [id])
 }
 
 model TextEmbedding {
-  id        Int                    @id @default(autoincrement())
-  text      String                 @unique
-  embedding Unsupported("vector")?
-  file      File?                  @relation(fields: [fileId], references: [id])
+  id        Int                          @id @default(autoincrement())
+  text      String                       @unique
+  embedding Unsupported("vector(1536)")?
+  file      File?                        @relation(fields: [fileId], references: [id])
   fileId    Int?
 }
