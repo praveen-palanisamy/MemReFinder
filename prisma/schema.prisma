@@ -19,7 +19,7 @@ model User {
 
 model File {
   id            Int                          @id @default(autoincrement())
-  name          String                       @unique
+  name          String
   size          Int?
   type          String?
   url           String?

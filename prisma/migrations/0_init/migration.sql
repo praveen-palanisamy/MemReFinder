@@ -49,9 +49,6 @@ CREATE TABLE "TextEmbedding" (
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "File_name_key" ON "File"("name");
-
--- CreateIndex
 CREATE UNIQUE INDEX "TextEmbedding_text_key" ON "TextEmbedding"("text");
 
 -- AddForeignKey
