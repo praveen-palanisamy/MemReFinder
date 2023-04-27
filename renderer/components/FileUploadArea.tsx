@@ -89,7 +89,7 @@ function FileUploadArea(props: FileUploadAreaProps) {
                     chunks,
                     extractedText: text,
                   };
-                  console.log(fileObject);
+                  // console.log(fileObject);
                   // Store embeddings in the database
                   await storeEmbeddings(fileObject);
 

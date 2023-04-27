@@ -4,18 +4,27 @@ import {FileLite } from "../types/file";
 
 export const storeEmbeddings = async (fileObject: FileLite) => {
 
-    console.log("storeEmbeddings:", fileObject)
     const {name, url, type, size, extractedText, embedding, chunks} = fileObject
 
-    const {error} = await supabase.from('files').insert({
+    const {data, error} = await supabase.from('File').insert({
        name,
        url,
        type,
        size,
-       extracted_text: extractedText,
-       mean_embedding: embedding,
-       chunks,
-    })
+       extractedText,
+       meanEmbedding: embedding,
+    }).select('id')
+
+    const file_id = data[0].id
+
+    console.log("File stored with file_id:", file_id)
+    console.log("error:", error)
+
+    const {error: error2} = await supabase.from('TextEmbedding').insert(chunks.map((chunk) => ({
+        text: chunk.text,
+        embedding: chunk.embedding,
+        fileId: file_id
+    })))
     console.log("Embeddings stored")
-    console.log("Error: ", error)
+    console.log("Error:", error2)
 }
