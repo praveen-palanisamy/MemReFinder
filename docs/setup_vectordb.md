@@ -118,6 +118,41 @@ CREATE TABLE "Embedding" (
 );
 ```
 
+** Resolution: **
+
+1. Generate the `migrations.sql` file using:
+
+```bash
+npx prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script > prisma/migrations/0_init/migration.sql
+```
+
+1. (optional) Update `prisma/migrations/0_init/migration.sql` to create the `chunks` table and add the `chunks` field to the `File` table.
+1. Update `prisma/migrations/0_init/migration.sql` to set the dimensions for the `vector` field type :
+
+````sql
+...
+    "meanEmbedding" vector(1536),
+```
+
+1. Update `prisma/migrations/0_init/migration.sql` to grant necessary permissions to the `public` schema. This is required since we are going to reset the database.
+
+```sql
+-- Setup permissions (manual step)
+grant usage on schema public to postgres, anon, authenticated, service_role;
+
+grant all privileges on all tables in schema public to postgres, anon, authenticated, service_role;
+grant all privileges on all functions in schema public to postgres, anon, authenticated, service_role;
+grant all privileges on all sequences in schema public to postgres, anon, authenticated, service_role;
+
+alter default privileges in schema public grant all on tables to postgres, anon, authenticated, service_role;
+alter default privileges in schema public grant all on functions to postgres, anon, authenticated, service_role;
+alter default privileges in schema public grant all on sequences to postgres, anon, authenticated, service_role;
+````
+
+See [prisma/migrations/0_init/migration.sql](prisma/migrations/0_init/migration.sql) for the complete migration script.
+
+1. Reset and update the database using: `npx prisma migrate reset`
+
 Related issues/feature-requests [Reuse collections of fields inside models](https://github.com/prisma/prisma/issues/2371) and, [Support for native DB composite types](https://github.com/prisma/prisma/issues/4263) has been open since 2020.
 
 ## Notes and references
