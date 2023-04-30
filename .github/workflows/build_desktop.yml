@@ -36,6 +36,9 @@ jobs:
 
       - name: Build for Desktop
         run: npm run build:desktop
+        env:
+          NEXT_PUBLIC_SUPABASE_PROJECT_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_PROJECT_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
       - if: startsWith(matrix.os, 'ubuntu')
         name: Pack for Linux
