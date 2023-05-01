@@ -45,12 +45,12 @@ jobs:
         run: |
           sudo apt-get install -y rpm
           sudo snap install snapcraft --classic
-          npx electron-builder build --linux --x64 --publish=always
+          npm exec electron-builder build --linux --x64 --publish=always
 
       - if: startsWith(matrix.os, 'windows')
         name: Pack for Windows
-        run: npx electron-builder build --win --x64 --arm64 --publish=always
+        run: npm exec electron-builder build --win --x64 --arm64 --publish=always
 
       - if: startsWith(matrix.os, 'macos')
         name: Pack for macOS
-        run: npx electron-builder build --mac --x64 --universal --publish=always
+        run: npm exec electron-builder build --mac --x64 --universal --publish=always
