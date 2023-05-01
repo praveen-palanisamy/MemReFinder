@@ -99,28 +99,7 @@ function FileQandAArea(props: FileQandAAreaProps) {
 
   return (
     <div className="space-y-4 text-gray-800">
-      <div className="space-y-2">
-        <input
-          className="border rounded border-gray-200 w-3/4 h-24 py-1 px-2"
-          placeholder="e.g. Why did my utility bills increase this month?"
-          name="search"
-          ref={questionRef}
-          onKeyDown={handleEnterInSearchBar}
-        />
-        <div className="flex justify-center">
-        <div
-          className="rounded-md bg-gray-50 py-1 px-4 w-max text-gray-500 hover:bg-gray-100 border border-gray-100 shadow cursor-pointer"
-          onClick={handleSearch}
-        >
-          {answerLoading ? (
-            <LoadingText text="Answering question..." />
-          ) : (
-            "Ask"
-          )}
-        </div>
-        </div>
-      </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center ring mx-4">
         {answerError && <div className="text-red-500">{answerError}</div>}
         <Transition
           show={hasAskedQuestion}
@@ -163,6 +142,28 @@ function FileQandAArea(props: FileQandAAreaProps) {
             />
           </Transition>
         </Transition>
+      </div>
+
+      <div className="space-y-2">
+        <input
+          className="border rounded border-gray-200 w-3/4 h-24 py-1 px-2"
+          placeholder="e.g. Why did my utility bills increase this month?"
+          name="search"
+          ref={questionRef}
+          onKeyDown={handleEnterInSearchBar}
+        />
+        <div className="flex justify-center">
+          <div
+            className="rounded-md bg-gray-50 py-1 px-4 w-max text-gray-500 hover:bg-gray-100 border border-gray-100 shadow cursor-pointer"
+            onClick={handleSearch}
+          >
+            {answerLoading ? (
+              <LoadingText text="Answering question..." />
+            ) : (
+              "Ask"
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
