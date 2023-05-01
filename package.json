@@ -2,7 +2,7 @@
   "private": true,
   "name": "memrefinder",
   "description": "GPT-powered File Explorer App to Chat with your documents and files to find answers to your questions",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Praveen Palanisamy <praveen.palanisamy@outlook.com>",
   "repository": {
     "type": "git",

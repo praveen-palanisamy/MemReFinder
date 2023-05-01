@@ -12,8 +12,7 @@ module.exports = {
     preflight: false,
   },
   theme: {
-    extend: {
-    },
+    extend: {},
   },
   keyframes: {
     blink: {
@@ -21,8 +20,5 @@ module.exports = {
       "50%": { opacity: 0 },
     },
   },
-  plugins: [
-    require("@tailwindcss/line-clamp"),
-    require("@tailwindcss/typography"),
-  ],
+  plugins: [require("@tailwindcss/typography")],
 };
