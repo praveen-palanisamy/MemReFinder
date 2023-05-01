@@ -109,7 +109,7 @@ function FileQandAArea(props: FileQandAAreaProps) {
           leave="transition duration-125 ease-out"
           leaveFrom="transform opacity-100"
           leaveTo="transform opacity-0"
-          className="mb-8"
+          className="mb-2"
         >
           {answer && (
             <div className="">
@@ -131,7 +131,7 @@ function FileQandAArea(props: FileQandAAreaProps) {
             leave="transition duration-125 ease-out"
             leaveFrom="transform opacity-100"
             leaveTo="transform opacity-0"
-            className="mb-8"
+            className="mb-2"
           >
             <FileViewerList
               files={props.files.filter((file) =>
@@ -143,7 +143,9 @@ function FileQandAArea(props: FileQandAAreaProps) {
           </Transition>
         </Transition>
       </div>
-
+      <div className="text-center">
+        2. Ask a question based on the content of your files:
+      </div>
       <div className="space-y-2">
         <input
           className="border rounded border-gray-200 w-3/4 h-24 py-1 px-2"

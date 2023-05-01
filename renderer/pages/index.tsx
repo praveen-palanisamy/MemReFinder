@@ -14,26 +14,29 @@ export default function FileQandA() {
         <title>MemReFinder</title>
       </Head>
       <div className="text-gray-800">
-        <h1 className="text-center text-4xl">MemReFinder: Chat with your Data</h1>
+        <h1 className="text-center text-4xl">
+          MemReFinder: Chat with your Data
+        </h1>
 
         <div className="">
           <center> Chat with your Documents and Files to find Answers.</center>
           <br />
+        </div>
+        <div className="grid grid-flow-row-dense grid-cols-3 grid-gap">
+          <div className="col-span-1 text-center">
+            {" "}
+            1. Load your files:
+            <FileUploadArea
+              handleSetFiles={setFiles}
+              maxNumFiles={100}
+              maxFileSizeMB={25}
+            />
           </div>
-            <div className="grid grid-flow-row-dense grid-cols-3 grid-gap">
-              <div className="col-span-1 text-center"> 1. Load your files: 
-                <FileUploadArea
-                  handleSetFiles={setFiles}
-                  maxNumFiles={100}
-                  maxFileSizeMB={25}
-                />
-              </div>
-            <div className="col-span-2 text-center">
-              2. Ask a question based on the content of your files:
-              <FileQandAArea files={files} />
-            </div>
+          <div className="col-span-2 text-center">
+            <FileQandAArea files={files} />
           </div>
-    </div>
+        </div>
+      </div>
     </div>
   );
 }
