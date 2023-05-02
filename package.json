@@ -10,7 +10,7 @@
   },
   "main": "main/index.js",
   "scripts": {
-    "dev": "next renderer",
+    "dev": "tsc -p renderer && next dev renderer",
     "build": "next build renderer",
     "start": "next start renderer",
     "dev:desktop": "npm run build:desktop && electron .",

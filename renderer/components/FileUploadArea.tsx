@@ -13,7 +13,6 @@ import { compact } from "lodash";
 import LoadingText from "./LoadingText";
 import { FileLite } from "../types/file";
 import FileViewerList from "./FileViewerList";
-import { storeEmbeddings } from "../services/storeEmbeddings";
 
 type FileUploadAreaProps = {
   handleSetFiles: Dispatch<SetStateAction<FileLite[]>>;
