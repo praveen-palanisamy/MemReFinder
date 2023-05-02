@@ -91,8 +91,21 @@ function FileUploadArea(props: FileUploadAreaProps) {
                   };
                   // console.log(fileObject);
                   // Store embeddings in the database
-                  await storeEmbeddings(fileObject);
+                  try {
+                    const storeEmbeddingsResponse = await axios.post(
+                      "/api/store-embeddings",
+                      // send fileObject to /api/store-embeddings in req.body
+                      fileObject
+                    );
 
+                    if (storeEmbeddingsResponse.status === 200) {
+                      console.log("Embeddings stored");
+                    }
+                  } catch (err: any) {
+                    console.log(`Error storing embeddings: ${err}`);
+                    return null;
+                  }
+                  // Return the fileObject
                   return fileObject;
                 } else {
                   console.log("Error creating file embedding");
