@@ -1,6 +1,11 @@
 import NextAuth from 'next-auth';
 import EmailProvider from 'next-auth/providers/email';
 import nodemailer from 'nodemailer';
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { PrismaClient } from "@prisma/client";
+
+// Instantiate Prisma client
+const prisma = new PrismaClient();
 
 const options = {
     providers: [
@@ -16,6 +21,7 @@ const options = {
             from: process.env.EMAIL_FROM,
         }),
     ],
+    adapter: PrismaAdapter(prisma),
 };
 
 // Call and export as default NextAuth to automatically create & handle the API routes for authentication
