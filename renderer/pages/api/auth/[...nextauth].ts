@@ -22,6 +22,12 @@ const options = {
         }),
     ],
     adapter: PrismaAdapter(prisma),
+    pages: {
+        signIn: '/',
+        signOut: '/',
+        error: '/',
+        verifyRequest: '/',
+    },
 };
 
 // Call and export as default NextAuth to automatically create & handle the API routes for authentication

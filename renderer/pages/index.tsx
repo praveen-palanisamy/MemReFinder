@@ -4,10 +4,16 @@ import { useState } from "react";
 import FileQandAArea from "../components/FileQandAArea";
 import { FileLite } from "../types/file";
 import FileUploadArea from "../components/FileUploadArea";
+import { AuthModal, AuthModalProps } from "../components/AuthModal";
+import { Cog8ToothIcon } from "@heroicons/react/24/solid";
 
 export default function FileQandA() {
   const [files, setFiles] = useState<FileLite[]>([]);
-
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const authModalProps: AuthModalProps = {
+    open: authModalOpen,
+    setOpen: setAuthModalOpen,
+  };
   return (
     <div className="flex h-screen flex-col">
       <Head>
@@ -31,6 +37,15 @@ export default function FileQandA() {
               maxNumFiles={100}
               maxFileSizeMB={25}
             />
+            <div className="absolute bottom-0 left-0">
+              <button
+                className="btn btn-primary"
+                onClick={() => setAuthModalOpen(true)}
+              >
+                <Cog8ToothIcon className="h-5 w-5" />
+              </button>
+            </div>
+            <AuthModal {...authModalProps} />
           </div>
           <div className="col-span-2 text-center">
             <FileQandAArea files={files} />
