@@ -5,7 +5,8 @@ import { AuthModal } from "./AuthModal";
 import { signOut } from "next-auth/react";
 
 // User settings menu with menu items to Login (if not logged in) or Logout (if logged in). Show cog icon if not logged in, else show user icon.
-export default function UserSettings() {
+export default function UserSettings({ session }) {
+  const user = session?.user;
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const authModalProps = {
     open: authModalOpen,
@@ -37,28 +38,27 @@ export default function UserSettings() {
                 className="origin-top-right transform -translate-y-full mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
               >
                 <Menu.Item>
-                  {({ active }) => (
-                    <button
-                      onClick={() => setAuthModalOpen(true)}
-                      className={`${
-                        active ? "bg-gray-100" : ""
-                      } block px-4 py-2 text-sm text-gray-700 w-full text-left`}
-                    >
-                      Login
-                    </button>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <button
-                      onClick={() => signOut()}
-                      className={`${
-                        active ? "bg-gray-100" : ""
-                      } block px-4 py-2 text-sm text-gray-700 w-full text-left`}
-                    >
-                      Logout
-                    </button>
-                  )}
+                  {!user
+                    ? ({ active }) => (
+                        <button
+                          onClick={() => setAuthModalOpen(true)}
+                          className={`${
+                            active ? "bg-gray-100" : ""
+                          } block px-4 py-2 text-sm text-gray-700 w-full text-left`}
+                        >
+                          Login
+                        </button>
+                      )
+                    : ({ active }) => (
+                        <button
+                          onClick={() => signOut()}
+                          className={`${
+                            active ? "bg-gray-100" : ""
+                          } block px-4 py-2 text-sm text-gray-700 w-full text-left`}
+                        >
+                          Logout
+                        </button>
+                      )}
                 </Menu.Item>
               </Menu.Items>
             </Transition>
