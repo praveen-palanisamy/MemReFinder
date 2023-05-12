@@ -57,9 +57,13 @@ function FileQandAArea(props: FileQandAAreaProps) {
         results = searchResultsResponse.data.searchResults;
       } else {
         setAnswerError("Sorry, something went wrong!");
+        // Throw error and handle appropriately
+        throw new Error(`Error:${searchResultsResponse.status}`);
       }
     } catch (err: any) {
-      setAnswerError("Sorry, something went wrong!");
+      setAnswerLoading(false);
+      setAnswerError("Try again");
+      return;
     }
 
     setHasAskedQuestion(true);

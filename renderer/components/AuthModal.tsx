@@ -28,7 +28,7 @@ export function AuthModal(props: AuthModalProps) {
       setError(error);
       alert("Unable to sign in");
     } finally {
-      alert("Signed in");
+      alert("Check your email and click on the link to sign in");
       props.setOpen(false);
     }
   };
