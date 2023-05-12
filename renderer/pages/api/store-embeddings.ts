@@ -46,6 +46,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Check if user is authenticated
     const session = await getSession({ req });
+    console.log("store-emb::session:", session)
     if (!session) {
         res.status(401).json({ error: "Unauthorized. User needs to Login" });
         return;

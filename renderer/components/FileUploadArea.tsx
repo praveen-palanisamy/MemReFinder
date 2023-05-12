@@ -13,12 +13,13 @@ import { compact } from "lodash";
 import LoadingText from "./LoadingText";
 import { FileLite } from "../types/file";
 import FileViewerList from "./FileViewerList";
+import { Session } from "next-auth";
 
 type FileUploadAreaProps = {
   handleSetFiles: Dispatch<SetStateAction<FileLite[]>>;
   maxNumFiles: number;
   maxFileSizeMB: number;
-  session: any;
+  session: Session | null;
 };
 
 function FileUploadArea(props: FileUploadAreaProps) {
