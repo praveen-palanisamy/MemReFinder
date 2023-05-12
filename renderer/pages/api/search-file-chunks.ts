@@ -11,7 +11,7 @@ type Data = {
 export const config = {
   api: {
     bodyParser: {
-      sizeLimit: "30mb",
+      sizeLimit: "25mb",
     },
   },
 };
