@@ -67,8 +67,8 @@ model File {
   extractedText String?
   meanEmbedding Unsupported("vector(1536)")?
   chunks        TextEmbedding[]
-  userId        String?
-  User          User?                        @relation(fields: [userId], references: [id])
+  userId        String
+  owner         User                         @relation(fields: [userId], references: [id])
 }
 
 model TextEmbedding {
