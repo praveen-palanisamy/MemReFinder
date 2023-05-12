@@ -1,9 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { getSession } from "next-auth/react";
 import { supabase } from "../../lib/supabaseClient";
 import { FileLite } from "../../types/file";
+import { PrismaClient, User } from "@prisma/client";
 
-
-const storeEmbeddings = async (fileObject: FileLite) => {
+const prisma = new PrismaClient()
+// TODO use prisma instaed of supabase directly
+const storeEmbeddings = async (fileObject: FileLite, user: User) => {
 
     const { name, url, type, size, extractedText, embedding, chunks } = fileObject
 
@@ -14,6 +17,7 @@ const storeEmbeddings = async (fileObject: FileLite) => {
         size,
         extractedText,
         meanEmbedding: embedding,
+        userId: user.id
     }).select('id')
 
     const file_id = data[0].id
@@ -39,13 +43,23 @@ export const config = {
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+
+    // Check if user is authenticated
+    const session = await getSession({ req });
+    if (!session) {
+        res.status(401).json({ error: "Unauthorized. User needs to Login" });
+        return;
+    }
     if (req.method !== "POST") {
         res.status(405).json({ error: `HTTP method ${req.method} not allowed` });
         return;
     }
 
     const fileObject = req.body
-    await storeEmbeddings(fileObject)
+    const user = await prisma.user.findUnique({
+        where: { email: session.user.email }
+    });
+    await storeEmbeddings(fileObject, user)
     res.status(200).json({ message: "Embeddings stored" })
 }
 

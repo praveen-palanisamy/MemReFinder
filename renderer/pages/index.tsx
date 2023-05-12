@@ -32,6 +32,7 @@ export default function FileQandA() {
               handleSetFiles={setFiles}
               maxNumFiles={100}
               maxFileSizeMB={25}
+              session
             />
             <div className="absolute bottom-0 left-0">
               <UserSettings session={session} />
