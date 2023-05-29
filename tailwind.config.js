@@ -14,6 +14,7 @@ module.exports = {
   theme: {
     extend: {},
   },
+  darkMode: 'class',
   keyframes: {
     blink: {
       "0%, 100%": { opacity: 1 },

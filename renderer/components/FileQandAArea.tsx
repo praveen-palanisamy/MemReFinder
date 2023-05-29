@@ -102,7 +102,7 @@ function FileQandAArea(props: FileQandAAreaProps) {
   );
 
   return (
-    <div className="space-y-4 text-gray-800">
+    <div className="space-y-4 text-gray-800 dark:text-white">
       <div className="flex justify-center ring mx-4">
         {answerError && <div className="text-red-500">{answerError}</div>}
         <Transition
@@ -152,7 +152,7 @@ function FileQandAArea(props: FileQandAAreaProps) {
       </div>
       <div className="space-y-2">
         <input
-          className="border rounded border-gray-200 w-3/4 h-24 py-1 px-2"
+          className="border rounded bg-gray-50 dark:bg-slate-800 border-gray-200 w-3/4 h-24 py-1 px-2"
           placeholder="e.g. Why did my utility bills increase this month?"
           name="search"
           ref={questionRef}
@@ -160,7 +160,7 @@ function FileQandAArea(props: FileQandAAreaProps) {
         />
         <div className="flex justify-center">
           <div
-            className="rounded-md bg-gray-50 py-1 px-4 w-max text-gray-500 hover:bg-gray-100 border border-gray-100 shadow cursor-pointer"
+            className="rounded-md bg-gray-50 dark:bg-slate-800 py-1 px-4 w-max text-gray-500 dark:text-white hover:bg-gray-100 dark:hover:bg- border border-gray-100 shadow cursor-pointer"
             onClick={handleSearch}
           >
             {answerLoading ? (

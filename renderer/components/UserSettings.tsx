@@ -5,7 +5,7 @@ import { AuthModal } from "./AuthModal";
 import { signOut } from "next-auth/react";
 
 // User settings menu with menu items to Login (if not logged in) or Logout (if logged in). Show cog icon if not logged in, else show user icon.
-export default function UserSettings({ session, theme, toggleTheme}) {
+export default function UserSettings({ session, theme, toggleTheme }) {
   const user = session?.user;
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const authModalProps = {
@@ -15,14 +15,15 @@ export default function UserSettings({ session, theme, toggleTheme}) {
   const handleThemeToggle = useCallback(() => {
     toggleTheme(theme === "light" ? "dark" : "light");
   }, [theme, toggleTheme]);
-
+  const activeClass = "bg-gray-50 dark:bg-gray-400";
+  const inactiveClass = "bg-gray-100 dark:bg-gray-300";
   return (
     <>
       <Menu as="div" className="ml-1 relative">
         {({ open }) => (
           <>
             <div>
-              <Menu.Button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+              <Menu.Button className="bg-white dark:bg-slate rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
                 <span className="sr-only">Open user menu</span>
                 <Cog8ToothIcon className="h-8 w-8" />
               </Menu.Button>
@@ -39,7 +40,7 @@ export default function UserSettings({ session, theme, toggleTheme}) {
             >
               <Menu.Items
                 static
-                className="origin-top-right transform -translate-y-2 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                className="origin-top-right transform -translate-y-1 mt-2 w-36 rounded-md shadow-lg py-1 bg-white dark:bg-gray-300 ring-1 ring-black ring-opacity-5 focus:outline-none"
               >
                 <Menu.Item>
                   {!user
@@ -47,7 +48,7 @@ export default function UserSettings({ session, theme, toggleTheme}) {
                         <button
                           onClick={() => setAuthModalOpen(true)}
                           className={`${
-                            active ? "bg-gray-100" : ""
+                            active ? `${activeClass}` : `${inactiveClass}`
                           } block px-4 py-2 text-sm text-gray-700 w-full text-left`}
                         >
                           Login
@@ -57,8 +58,8 @@ export default function UserSettings({ session, theme, toggleTheme}) {
                         <button
                           onClick={() => signOut()}
                           className={`${
-                            active ? "bg-gray-100" : ""
-                          } block px-4 py-2 text-sm text-gray-700 w-full text-left`}
+                            active ? `${activeClass}` : `${inactiveClass}`
+                          } block px-4 py-2 text-sm text-black dark:text-white w-full text-left`}
                         >
                           Logout
                         </button>
@@ -69,7 +70,7 @@ export default function UserSettings({ session, theme, toggleTheme}) {
                     <button
                       onClick={handleThemeToggle}
                       className={`${
-                        active ? "bg-gray-100" : ""
+                        active ? `${activeClass}` : `${inactiveClass}`
                       } block px-4 py-2 text-sm text-gray-700 w-full text-left`}
                     >
                       {theme === "light" ? "Dark" : "Light"} theme
