@@ -21,12 +21,15 @@ export default function FileQandA() {
     }
   }, [theme]);
 
+  const bgColor = theme === "dark" ? "bg-gray-800" : "bg-white";
+  const textColor = theme === "dark" ? "text-white" : "text-black";
+
   return (
-    <div className="flex h-screen">
+    <div className={`flex h-screen ${bgColor}`}>
       <Head>
         <title>MemReFinder</title>
       </Head>
-      <div className="w-full">
+      <div className={`w-full ${textColor}`}>
         <h1 className="text-center text-4xl">
           MemReFinder: Chat with your Data
         </h1>
@@ -36,8 +39,10 @@ export default function FileQandA() {
           <br />
         </div>
         {!isLoadingUser && (
-          <div className="grid grid-flow-row-dense grid-cols-3 grid-gap">
-            <div className="col-span-1 text-center">
+          <div
+            className={`grid grid-flow-row-dense grid-cols-3 grid-gap ${bgColor}`}
+          >
+            <div className={`col-span-1 text-center ${textColor}`}>
               {" "}
               1. Load your files:
               <FileUploadArea
@@ -47,7 +52,7 @@ export default function FileQandA() {
                 session={session}
               />
             </div>
-            <div className="col-span-2 text-center">
+            <div className={`col-span-2 text-center ${textColor}`}>
               <FileQandAArea files={files} />
             </div>
           </div>
