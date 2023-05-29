@@ -16,7 +16,6 @@ export default function FileQandA() {
       <Head>
         <title>MemReFinder</title>
       </Head>
-        <div className="w-12 bg-gray-100"></div>
         <div className="w-full">
           <h1 className="text-center text-4xl">
             MemReFinder: Chat with your Data
@@ -44,9 +43,7 @@ export default function FileQandA() {
             </div>
           )}
         </div>
-        <div className="absolute bottom-0 left-0">
           <UserSettings session={session} />
-        </div>
     </div>
   );
 }
