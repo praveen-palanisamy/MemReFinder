@@ -8,7 +8,7 @@ import { PrismaClient } from "@prisma/client";
 // Instantiate Prisma client
 const prisma = new PrismaClient();
 
-const options = {
+export const authOptions = {
     providers: [
         EmailProvider({
             server: {
@@ -36,4 +36,4 @@ const options = {
 };
 
 // Call and export as default NextAuth to automatically create & handle the API routes for authentication
-export default NextAuth(options);
+export default NextAuth(authOptions);

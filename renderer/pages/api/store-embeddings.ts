@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
+import { authOptions } from "./auth/[...nextauth]";
+import { getServerSession } from "next-auth/next";
 import { supabase } from "../../lib/supabaseClient";
 import { FileLite } from "../../types/file";
 import { PrismaClient, User } from "@prisma/client";
@@ -43,9 +44,8 @@ export const config = {
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-
     // Check if user is authenticated
-    const session = await getSession({ req });
+    const session = await getServerSession(req, res, authOptions )
     console.log("store-emb::session:", session)
     if (!session) {
         res.status(401).json({ error: "Unauthorized. User needs to Login" });
