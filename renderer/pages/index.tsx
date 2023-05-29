@@ -11,6 +11,7 @@ export default function FileQandA() {
   const [files, setFiles] = useState<FileLite[]>([]);
   const { data: session, status } = useSession();
   const isLoadingUser = status === "loading";
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   return (
     <div className="flex h-screen">
       <Head>
@@ -43,7 +44,7 @@ export default function FileQandA() {
             </div>
           )}
         </div>
-          <UserSettings session={session} />
+          <UserSettings session={session} theme={theme} toggleTheme={setTheme} />
     </div>
   );
 }
