@@ -13,11 +13,13 @@ import { compact } from "lodash";
 import LoadingText from "./LoadingText";
 import { FileLite } from "../types/file";
 import FileViewerList from "./FileViewerList";
+import { Session } from "next-auth";
 
 type FileUploadAreaProps = {
   handleSetFiles: Dispatch<SetStateAction<FileLite[]>>;
   maxNumFiles: number;
   maxFileSizeMB: number;
+  session: Session | null;
 };
 
 function FileUploadArea(props: FileUploadAreaProps) {
@@ -89,20 +91,25 @@ function FileUploadArea(props: FileUploadAreaProps) {
                     extractedText: text,
                   };
                   // console.log(fileObject);
-                  // Store embeddings in the database
-                  try {
-                    const storeEmbeddingsResponse = await axios.post(
-                      "/api/store-embeddings",
-                      // send fileObject to /api/store-embeddings in req.body
-                      fileObject
-                    );
+                  if (props.session?.user) {
+                    // Store embeddings in the database
+                    try {
+                      const storeEmbeddingsResponse = await axios.post(
+                        "/api/store-embeddings",
+                        // send fileObject to /api/store-embeddings in req.body
+                        fileObject
+                      );
 
-                    if (storeEmbeddingsResponse.status === 200) {
-                      console.log("Embeddings stored");
+                      if (storeEmbeddingsResponse.status === 200) {
+                        console.log("Embeddings stored");
+                      }
+                    } catch (err: any) {
+                      console.log(`Error storing embeddings: ${err}`);
+                      return null;
                     }
-                  } catch (err: any) {
-                    console.log(`Error storing embeddings: ${err}`);
-                    return null;
+                  } else {
+                    // Prompt to signin
+                    alert("Please sign in to store embeddings");
                   }
                   // Return the fileObject
                   return fileObject;
