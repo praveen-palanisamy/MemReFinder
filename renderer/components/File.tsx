@@ -65,7 +65,7 @@ function File(props: FileProps) {
         <div className="items-center mt-2 justify-center">
           <iframe
             src={props.file.url}
-            className="h-full w-full"
+            className="h-full w-full dark:bg-gray-400"
             title={props.file.name}
           ></iframe>
         </div>

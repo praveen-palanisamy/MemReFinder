@@ -26,7 +26,7 @@ function FileViewerList(props: FileViewerListProps) {
         <div className="flex flex-col items-left justify-center w-full mt-4">
           <div className="flex flex-row">
             <div
-              className="rounded-md flex shadow p-2 mb-2 w-full bg-gray-50 items-center cursor-pointer "
+              className="rounded-md flex shadow p-2 mb-2 w-full bg-gray-50 dark:bg-slate-500 items-center cursor-pointer "
               onClick={handleListExpand}
             >
               {props.title}
