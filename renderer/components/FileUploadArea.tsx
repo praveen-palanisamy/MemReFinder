@@ -172,7 +172,7 @@ function FileUploadArea(props: FileUploadAreaProps) {
     <div className="flex items-center justify-center w-full flex-col">
       <label
         htmlFor="dropzone-file"
-        className={`flex flex-col shadow items-center justify-center w-full h-36 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 relative ${
+        className={`flex flex-col shadow items-center justify-center w-full h-36 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:bg-slate-800 hover:bg-gray-100 relative ${
           dragOver ? "border-blue-500 bg-blue-50" : ""
         }`}
         ref={dropzoneRef}
@@ -185,7 +185,7 @@ function FileUploadArea(props: FileUploadAreaProps) {
           {loading ? (
             <LoadingText text="Uploading..." />
           ) : (
-            <div className="text-gray-500 flex flex-col items-center text-center">
+            <div className="text-gray-500 dark:text-white flex flex-col items-center text-center">
               <ArrowUpTrayIcon className="w-7 h-7 mb-4" />
               <p className="mb-2 text-sm">
                 <span className="font-semibold">Click to load</span> or drag and

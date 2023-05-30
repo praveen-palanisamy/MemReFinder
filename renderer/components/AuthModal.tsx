@@ -12,6 +12,8 @@ export type AuthModalProps = {
 
 export function AuthModal(props: AuthModalProps) {
   const [error, setError] = useState("");
+  const bgColor = "bg-white dark:bg-slate-400";
+  const textColor = "text-gray-500 dark:text-gray-50";
 
   const signInWithEmail = async ({ emailId }) => {
     try {
@@ -83,9 +85,9 @@ export function AuthModal(props: AuthModalProps) {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="bg-white rounded-md p-4 w-96">
+            <div className={`${bgColor} rounded-md p-4 w-96`}>
               <div className="flex flex-row justify-between">
-                <Dialog.Title className="text-lg font-medium text-gray-900">
+                <Dialog.Title className={`text-lg font-medium ${textColor}`}>
                   Sign in
                 </Dialog.Title>
                 <button
@@ -96,7 +98,7 @@ export function AuthModal(props: AuthModalProps) {
                 </button>
               </div>
               <div className="mt-2">
-                <p className="text-sm text-gray-500">
+                <p className={`text-sm ${textColor}`}>
                   Sign in to save and restore your Embeddings.
                 </p>
               </div>
@@ -114,7 +116,7 @@ export function AuthModal(props: AuthModalProps) {
                     <div className="w-full border-t border-gray-300" />
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-white text-gray-500">
+                    <span className={`px-2 ${bgColor} ${textColor}`}>
                       Or continue with
                     </span>
                   </div>
