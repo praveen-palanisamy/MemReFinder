@@ -59,7 +59,7 @@ export default function UserSettings({ session, theme, toggleTheme }) {
                           onClick={() => signOut()}
                           className={`${
                             active ? `${activeClass}` : `${inactiveClass}`
-                          } block px-4 py-2 text-sm text-black dark:text-white w-full text-left`}
+                          } block px-4 py-2 text-sm text-gray-700 w-full text-left`}
                         >
                           Logout
                         </button>
