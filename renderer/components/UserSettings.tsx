@@ -28,7 +28,7 @@ export default function UserSettings({ session, theme, toggleTheme }) {
               } group bg-white dark:bg-slate rounded-full inline-flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500`}
             >
               <span className="sr-only">Open user menu</span>
-              <Cog8ToothIcon className="h-8 w-8" />
+              <Cog8ToothIcon className="h-12 w-12" />
             </Popover.Button>
 
             <Transition

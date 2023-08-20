@@ -16,15 +16,19 @@ export default function Layout({ children, session, ...pageProps }) {
     <>
       <div className={`flex h-screen bg-white dark:bg-slate-800`}>
         <div className={`w-full text-black dark:text-white`}>
-          <h1 className="text-center text-4xl">
-            MemReFinder: Chat with your Data
-          </h1>
-          <div className="text-gray dark:text-white">
-            <center>
-              {" "}
-              Chat with your Documents and Files to find Answers.
-            </center>
-            <div className="flex justify-end">
+          <div className="grid grid-cols-12">
+            <div className="col-span-11">
+              <h1 className="text-center text-4xl">
+                MemReFinder: Chat with your Data
+              </h1>
+              <div className="text-gray dark:text-white">
+                <center>
+                  {" "}
+                  Chat with your Documents and Files to find Answers.{" "}
+                </center>
+              </div>
+            </div>
+            <div className="flex justify-center items-center">
               <UserSettings
                 session={session}
                 theme={theme}
