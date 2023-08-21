@@ -6,6 +6,7 @@ interface AppMode {
   description: string[];
   button: string;
   badges?: string[];
+  imageSrc?: string;
 }
 
 export default function WelcomePage() {
@@ -20,6 +21,7 @@ export default function WelcomePage() {
     ],
     button: "Start",
     badges: ["OpenAI API Key required"],
+    imageSrc: "/images/cloud.png",
   };
   const hybridMode: AppMode = {
     mode: "Hybrid",
@@ -28,10 +30,11 @@ export default function WelcomePage() {
       "Use powerful AI models running in the cloud.",
       "Medium compute and memory requirements depending on your data type and volume.",
       "Requires an OpenAI API Key",
-      "(optional) Sign-in to Save and Resume state and context across sessions and devices. ",
+      "(optional) Sign-in to Save and Resume your work across sessions and devices. ",
     ],
-    button: "Start",
+    button: "Coming Soon...",
     badges: ["OpenAI API Key required"],
+    imageSrc: "/images/hybrid.png",
   };
   const offlineMode: AppMode = {
     mode: "Local",
@@ -40,9 +43,10 @@ export default function WelcomePage() {
       "Run models locally on your own hardware.",
       "High compute and memory requirements.",
       "No OpenAI API Key required.",
-      "(optional) Sign-in to Save and Resume state and context across sessions and devices. ",
+      "(optional) Sign-in to Save and Resume your work across sessions and devices. ",
     ],
-    button: "Start",
+    button: "Coming Soon...",
+    imageSrc: "/images/local.png",
   };
 
   const appModes: AppMode[] = [onlineMode, hybridMode, offlineMode];
@@ -53,15 +57,18 @@ export default function WelcomePage() {
       <h2 className="text-center">
         Choose the mode that best suits your needs:
       </h2>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid flex-col grid-cols-3 gap-4 min-h-screen">
         {appModes.map((mode) => (
           <div className="col-span-1">
             <div className="card w-96 glass">
               <figure>
-                <img src="/images/welcome-bg.jpg" alt="car!" />
+                <img
+                  src={mode.imageSrc ? mode.imageSrc : "/images/welcome-bg.jpg"}
+                  alt="car!"
+                />
               </figure>
               <div className="card-body">
-                <h2 className="card-title"> {mode.mode}</h2>
+                <h2 className="card-title justify-center"> {mode.mode}</h2>
 
                 <ul className="list-disc">
                   {mode.description.map((line) => (
