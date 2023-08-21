@@ -60,6 +60,7 @@
     "@types/pdf-parse": "^1.1.1",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
+    "daisyui": "^3.5.1",
     "electron": "^21.3.3",
     "electron-builder": "^23.6.0",
     "eslint": "8.32.0",
