@@ -21,11 +21,8 @@ export default function Layout({ children, session, ...pageProps }) {
               <h1 className="text-center text-4xl">
                 MemReFinder: Chat with your Data
               </h1>
-              <div className="text-gray dark:text-white">
-                <center>
-                  {" "}
-                  Chat with your Documents and Files to find Answers.{" "}
-                </center>
+              <div className="text-gray text-center dark:text-white">
+                Chat with your Documents and Files to find Answers.
               </div>
             </div>
             <div className="flex justify-center items-center">
