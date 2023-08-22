@@ -57,7 +57,7 @@ export default function WelcomePage() {
       <h2 className="text-center">
         Choose the mode that best suits your needs:
       </h2>
-      <div className="grid flex-col grid-cols-3 gap-4 min-h-screen">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {appModes.map((mode) => (
           <div className="col-span-1">
             <div className="card w-96 glass">

@@ -14,7 +14,7 @@ export default function Layout({ children, session, ...pageProps }) {
 
   return (
     <>
-      <div className={`flex h-screen bg-white dark:bg-slate-800`}>
+      <div className={`flex min-h-screen bg-white dark:bg-slate-800`}>
         <div className={`w-full text-black dark:text-white`}>
           <div className="grid grid-cols-12">
             <div className="col-span-11">
