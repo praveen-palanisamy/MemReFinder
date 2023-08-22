@@ -1,7 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import UserSettings from "../components/UserSettings";
+import { AppContext } from "@/pages/_app";
+
 export default function Layout({ children, session, ...pageProps }) {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  // const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  const { theme, setTheme: setTheme } = useContext(AppContext);
   const bgColor = theme === "dark" ? "bg-slate-800" : "bg-white";
   const textColor = theme === "dark" ? "text-white" : "text-black";
   useEffect(() => {

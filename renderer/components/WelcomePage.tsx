@@ -1,6 +1,7 @@
 // This component is to be used in pages/index.tsx.
 // The component should render a full-screen welcome page with 3 options: Online, Hybrid, Offline displayed in 3 columns as cards with a title and description. Each card has a button to start the app in that mode. The Online and Hybrid cards also have a button to sign in. the Offline card has a button to start the app in offline mode.
-
+import { AppContext } from "@/pages/_app";
+import { useContext } from "react";
 interface AppMode {
   mode: string;
   description: string[];
@@ -9,8 +10,8 @@ interface AppMode {
   imageSrc?: string;
 }
 
-export default function WelcomePage({ session }) {
-  console.log("session: ", session);
+export default function WelcomePage() {
+  const { setMode } = useContext(AppContext);
   const onlineMode: AppMode = {
     mode: "Cloud",
     description: [
@@ -89,7 +90,17 @@ export default function WelcomePage({ session }) {
                   </div>
                 )}
                 <div className="card-actions justify-center">
-                  <button className="btn btn-primary">{mode.button}</button>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => {
+                      console.log(`Setting mode to: ${mode.mode}`);
+                      setMode(
+                        mode.mode.toLowerCase() as "cloud" | "hybrid" | "local"
+                      );
+                    }}
+                  >
+                    {mode.button}
+                  </button>
                 </div>
               </div>
             </div>
