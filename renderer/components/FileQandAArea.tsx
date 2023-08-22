@@ -151,8 +151,8 @@ function FileQandAArea(props: FileQandAAreaProps) {
         2. Ask a question based on the content of your files:
       </div>
       <div className="space-y-2">
-        <input
-          className="border rounded bg-gray-50 dark:bg-slate-800 border-gray-200 w-3/4 h-24 py-1 px-2"
+        <textarea
+          className="border rounded bg-gray-50 dark:bg-slate-800 border-gray-200 w-3/4 h-auto py-1 px-2"
           placeholder="e.g. Why did my utility bills increase this month?"
           name="search"
           ref={questionRef}
