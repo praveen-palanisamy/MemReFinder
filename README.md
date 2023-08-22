@@ -1,8 +1,12 @@
 # MemReFinder: Chat with your Documents and Files
 
+![MemReFinder Welcome Screen](resources/welcomescreen-wslg2.jpg)
+
 Memory and Retrieval-Augmented Finder (File Explorer) App to chat with your data to find answers powered by OpenAI GPT models. You can load multiple DOCX, PDF, CSV, Markdown, HTML or other text files and ask questions related to their content, and the app will use embeddings and GPT to generate answers from the most relevant files and sections within your files.
 
 https://user-images.githubusercontent.com/4770482/232273659-4fa80c21-7ebd-4894-bcb5-68610951b7c9.mp4
+
+You can run the App on your Mac/Windows/Linux Desktop/Laptop or your web browser.
 
 ## How does it help you?
 
@@ -19,16 +23,18 @@ If you want to avoid uploading your files to a third-party server for processing
 Download the latest release for your OS. Portable versions are available for Windows and Linux which do not require installation.
 
 <!-- ASSETS_START -->
+
 ### Download links
 
-| Platform       | Download |
-| -------------- | -------- |
-| Windows        | [Download .exe](https://github.com/praveen-palanisamy/MemReFinder/releases/download/v0.0.1/MemReFinder-Setup-0.0.1.exe) |
-| Mac            | [Download .dmg](https://github.com/praveen-palanisamy/MemReFinder/releases/download/v0.0.1/MemReFinder-0.0.1.dmg) |
-| Linux          | |
-| &emsp;Debian/Ubuntu | [Download .deb](https://github.com/praveen-palanisamy/MemReFinder/releases/download/v0.0.1/memrefinder_0.0.1_amd64.deb) |
+| Platform            | Download                                                                                                                    |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Windows             | [Download .exe](https://github.com/praveen-palanisamy/MemReFinder/releases/download/v0.0.1/MemReFinder-Setup-0.0.1.exe)     |
+| Mac                 | [Download .dmg](https://github.com/praveen-palanisamy/MemReFinder/releases/download/v0.0.1/MemReFinder-0.0.1.dmg)           |
+| Linux               |                                                                                                                             |
+| &emsp;Debian/Ubuntu | [Download .deb](https://github.com/praveen-palanisamy/MemReFinder/releases/download/v0.0.1/memrefinder_0.0.1_amd64.deb)     |
 | &emsp;AppImage      | [Download .appimage](https://github.com/praveen-palanisamy/MemReFinder/releases/download/v0.0.1/MemReFinder-0.0.1.AppImage) |
-| &emsp;RPM-based     | [Download .rpm](https://github.com/praveen-palanisamy/MemReFinder/releases/download/v0.0.1/memrefinder-0.0.1.x86_64.rpm) |
+| &emsp;RPM-based     | [Download .rpm](https://github.com/praveen-palanisamy/MemReFinder/releases/download/v0.0.1/memrefinder-0.0.1.x86_64.rpm)    |
+
 <!-- ASSETS_END -->
 
 See [Releases](https://github.com/praveen-palanisamy/MemReFinder/releases) for download links to other platforms.
