@@ -9,7 +9,8 @@ interface AppMode {
   imageSrc?: string;
 }
 
-export default function WelcomePage() {
+export default function WelcomePage({ session }) {
+  console.log("session: ", session);
   const onlineMode: AppMode = {
     mode: "Cloud",
     description: [
@@ -58,8 +59,8 @@ export default function WelcomePage() {
         Choose the mode that best suits your needs:
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {appModes.map((mode) => (
-          <div className="col-span-1">
+        {appModes.map((mode, index) => (
+          <div key={`${mode.mode}${index}`} className="col-span-1">
             <div className="card w-96 glass">
               <figure>
                 <img
@@ -71,14 +72,19 @@ export default function WelcomePage() {
                 <h2 className="card-title justify-center"> {mode.mode}</h2>
 
                 <ul className="list-disc">
-                  {mode.description.map((line) => (
-                    <li>{line}</li>
+                  {mode.description.map((line, index) => (
+                    <li key={`${mode.mode}${index}`}>{line}</li>
                   ))}
                 </ul>
                 {mode.badges && (
                   <div className="card-badge">
-                    {mode.badges.map((badge) => (
-                      <span className="badge badge-accent">{badge}</span>
+                    {mode.badges.map((badge, index) => (
+                      <span
+                        key={`${mode.mode}${index}`}
+                        className="badge badge-accent"
+                      >
+                        {badge}
+                      </span>
                     ))}
                   </div>
                 )}
