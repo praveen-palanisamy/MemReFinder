@@ -5,9 +5,9 @@ import { useContext } from "react";
 
 export default function Main() {
   const { mode } = useContext(AppContext);
-  const supportedModes = ["cloud"];
+  const supportedModes = ["", "cloud"];
   return (
-    <div className="flex flex-col justify-center min-h-screen">
+    <div className="flex flex-col min-h-screen">
       {mode === "cloud" && <FileQandA />}
       {mode === "" && <WelcomePage />}
       {!supportedModes.includes(mode) && <WelcomePage />}

@@ -53,7 +53,7 @@ export default function WelcomePage() {
   const appModes: AppMode[] = [onlineMode, hybridMode, offlineMode];
 
   return (
-    <>
+    <div className="flex flex-col justify-center items-center">
       <h1 className="text-center text-4xl"> Welcome! </h1>
       <h2 className="text-center">
         Choose the mode that best suits your needs:
@@ -106,6 +106,6 @@ export default function WelcomePage() {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }

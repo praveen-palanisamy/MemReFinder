@@ -10,7 +10,7 @@ export default function FileQandA() {
   const { data: session, status } = useSession();
   const isLoadingUser = status === "loading";
   return (
-    <>
+    <div className="flex flex-col justify-center align-center min-h-screen">
       {!isLoadingUser && (
         <div
           className={`grid grid-flow-row-dense grid-cols-3 grid-gap bg-white dark:bg-slate-800`}
@@ -35,6 +35,6 @@ export default function FileQandA() {
           <div className="text-2xl">Loading...</div>
         </div>
       )}
-    </>
+    </div>
   );
 }
