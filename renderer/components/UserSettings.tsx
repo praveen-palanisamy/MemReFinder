@@ -1,11 +1,24 @@
-import { Fragment, useState, useCallback } from "react";
+import { Fragment, useState, useCallback, useContext, useEffect } from "react";
 import { Cog8ToothIcon } from "@heroicons/react/24/solid";
 import { AuthModal } from "./AuthModal";
 import { signOut } from "next-auth/react";
 import { Popover, Transition } from "@headlessui/react";
+import { AppContext } from "@/pages/_app";
+import { useSession } from "next-auth/react";
 
 // User settings menu with menu items to Login (if not logged in) or Logout (if logged in). Show cog icon if not logged in, else show user icon.
-export default function UserSettings({ session, theme, toggleTheme }) {
+export default function UserSettings() {
+  const { data: session } = useSession();
+  const { theme, setTheme: setTheme } = useContext(AppContext);
+  const bgColor = theme === "dark" ? "bg-slate-800" : "bg-white";
+  const textColor = theme === "dark" ? "text-white" : "text-black";
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
   const user = session?.user;
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const authModalProps = {
@@ -13,8 +26,8 @@ export default function UserSettings({ session, theme, toggleTheme }) {
     setOpen: setAuthModalOpen,
   };
   const handleThemeToggle = useCallback(() => {
-    toggleTheme(theme === "light" ? "dark" : "light");
-  }, [theme, toggleTheme]);
+    setTheme(theme === "light" ? "dark" : "light");
+  }, [theme]);
   const activeClass = "bg-gray-50 dark:bg-gray-400";
   const inactiveClass = "bg-gray-100 dark:bg-gray-300";
   return (

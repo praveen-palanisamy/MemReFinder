@@ -25,7 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
             setMode,
           }}
         >
-          <Layout {...pageProps}>
+          <Layout>
             <Component {...pageProps} />
           </Layout>
         </AppContext.Provider>

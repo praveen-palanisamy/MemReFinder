@@ -1,21 +1,8 @@
-import { useEffect, useState, useContext } from "react";
 import Head from "next/head";
 import UserSettings from "../components/UserSettings";
-import { AppContext } from "@/pages/_app";
 
-export default function Layout({ children, session, ...pageProps }) {
+export default function Layout({ children }) {
   // const [theme, setTheme] = useState<"light" | "dark">("light");
-
-  const { theme, setTheme: setTheme } = useContext(AppContext);
-  const bgColor = theme === "dark" ? "bg-slate-800" : "bg-white";
-  const textColor = theme === "dark" ? "text-white" : "text-black";
-  useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [theme]);
 
   return (
     <>
@@ -34,11 +21,7 @@ export default function Layout({ children, session, ...pageProps }) {
               </div>
             </div>
             <div className="flex justify-center items-center">
-              <UserSettings
-                session={session}
-                theme={theme}
-                toggleTheme={setTheme}
-              />
+              <UserSettings />
             </div>
           </div>
 

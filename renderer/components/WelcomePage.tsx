@@ -1,7 +1,6 @@
-// This component is to be used in pages/index.tsx.
-// The component should render a full-screen welcome page with 3 options: Online, Hybrid, Offline displayed in 3 columns as cards with a title and description. Each card has a button to start the app in that mode. The Online and Hybrid cards also have a button to sign in. the Offline card has a button to start the app in offline mode.
 import { AppContext } from "@/pages/_app";
 import { useContext } from "react";
+
 interface AppMode {
   mode: string;
   description: string[];
