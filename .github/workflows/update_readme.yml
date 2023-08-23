@@ -15,6 +15,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          # Checkout the main branch. By default, GitHub Actions checks out the commit that triggered the workflow which is the release tag resulting in a detached HEAD and failing to push changes.
+          ref: main
       - name: Setup Python
         uses: actions/setup-python@v3
         with:
