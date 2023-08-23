@@ -20,7 +20,8 @@
     "clean": "rimraf dist renderer/.next main/*.js main/**/*.js",
     "build:main": "tsc -p main",
     "build:renderer": "next build renderer",
-    "build:electron": "npm run build:renderer && npm run build:main"
+    "build:electron": "npm run build:renderer && npm run build:main",
+    "lint": "next lint renderer"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.6",

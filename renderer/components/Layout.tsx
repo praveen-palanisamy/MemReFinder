@@ -1,4 +1,5 @@
 import { useEffect, useState, useContext } from "react";
+import Head from "next/head";
 import UserSettings from "../components/UserSettings";
 import { AppContext } from "@/pages/_app";
 
@@ -18,6 +19,9 @@ export default function Layout({ children, session, ...pageProps }) {
 
   return (
     <>
+      <Head>
+        <title> MemReFinder</title>
+      </Head>
       <div className={`flex min-h-screen bg-white dark:bg-slate-800`}>
         <div className={`w-full text-black dark:text-white`}>
           <div className="grid grid-cols-12">

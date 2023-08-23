@@ -17,7 +17,7 @@ You can run the App on your Mac/Windows/Linux Desktop/Laptop or your web browser
 
 ## Run the App
 
-### Local
+### Cloud / Hybrid
 
 If you want to avoid uploading your files to a third-party server for processing, you can easily run the app locally. Setup your `OPENAI_API_KEY` securely using a local environment variable and run the app. You can create a new API key [here](https://beta.openai.com/account/api-keys).
 Download the latest release for your OS. Portable versions are available for Windows and Linux which do not require installation.
