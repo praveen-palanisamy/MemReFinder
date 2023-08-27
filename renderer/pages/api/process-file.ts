@@ -53,6 +53,7 @@ export default async function handler(
 
     const { meanEmbedding, chunks } = await createEmbeddings({
       text,
+      mode: fields.mode as "local" | "cloud" | "hybrid",
     });
 
     res.status(200).json({ text, meanEmbedding, chunks });

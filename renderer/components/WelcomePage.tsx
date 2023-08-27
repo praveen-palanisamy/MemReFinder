@@ -2,7 +2,7 @@ import { AppContext } from "@/pages/_app";
 import { useContext } from "react";
 
 interface AppMode {
-  mode: string;
+  mode: "Cloud" | "Hybrid" | "Local";
   description: string[];
   button: string;
   badges?: string[];
