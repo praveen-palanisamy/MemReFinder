@@ -27,6 +27,8 @@ export default async function handler(
 
     const maxResults = req.body.maxResults as number;
 
+    const mode = req.body.mode as "local" | "cloud" | "hybrid";
+
     if (!searchQuery) {
       res.status(400).json({ error: "searchQuery must be a string" });
       return;
@@ -48,6 +50,7 @@ export default async function handler(
       searchQuery,
       files,
       maxResults,
+      mode,
     });
 
     res.status(200).json({ searchResults });

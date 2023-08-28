@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useRef, useState } from "react";
+import React, { memo, useCallback, useRef, useState, useContext } from "react";
 import { Transition } from "@headlessui/react";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
@@ -7,6 +7,7 @@ import FileViewerList from "./FileViewerList";
 import LoadingText from "./LoadingText";
 import { isFileNameInString } from "../services/utils";
 import { FileChunk, FileLite } from "../types/file";
+import { AppContext } from "@/pages/_app";
 
 type FileQandAAreaProps = {
   files: FileLite[];
@@ -19,6 +20,7 @@ function FileQandAArea(props: FileQandAAreaProps) {
   const [answerLoading, setAnswerLoading] = useState<boolean>(false);
   const [answer, setAnswer] = useState("");
   const [answerDone, setAnswerDone] = useState(false);
+  const { mode } = useContext(AppContext);
 
   const handleSearch = useCallback(async () => {
     if (answerLoading) {
@@ -50,6 +52,7 @@ function FileQandAArea(props: FileQandAAreaProps) {
           searchQuery: question,
           files: props.files,
           maxResults: 10,
+          mode,
         }
       );
 
