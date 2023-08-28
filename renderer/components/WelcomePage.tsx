@@ -33,7 +33,7 @@ export default function WelcomePage() {
       "Requires an OpenAI API Key",
       "(optional) Sign-in to Save and Resume your work across sessions and devices. ",
     ],
-    button: "Coming Soon...",
+    button: "Start",
     badges: ["OpenAI API Key required"],
     imageSrc: "/images/hybrid.png",
   };

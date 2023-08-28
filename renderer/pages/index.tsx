@@ -8,7 +8,7 @@ export default function Main() {
   const supportedModes = ["", "cloud", "hybrid"];
   return (
     <div className="">
-      {mode === "cloud" || (mode === "hybrid" && <FileQandA />)}
+      {(mode === "cloud" || mode === "hybrid") && <FileQandA />}
       {mode === "" && <WelcomePage />}
       {!supportedModes.includes(mode) && <WelcomePage />}
     </div>
