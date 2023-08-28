@@ -27,6 +27,7 @@
     "@next-auth/prisma-adapter": "^1.0.6",
     "@prisma/client": "^4.13.0",
     "@supabase/supabase-js": "^2.21.0",
+    "@xenova/transformers": "^2.5.3",
     "autoprefixer": "^10.4.7",
     "axios": "^1.2.3",
     "clsx": "^1.2.1",

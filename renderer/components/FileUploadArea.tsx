@@ -5,6 +5,7 @@ import React, {
   useState,
   memo,
   useRef,
+  useContext,
 } from "react";
 import axios from "axios";
 import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
@@ -14,6 +15,7 @@ import LoadingText from "./LoadingText";
 import { FileLite } from "../types/file";
 import FileViewerList from "./FileViewerList";
 import { Session } from "next-auth";
+import { AppContext } from "@/pages/_app";
 
 type FileUploadAreaProps = {
   handleSetFiles: Dispatch<SetStateAction<FileLite[]>>;
@@ -30,6 +32,7 @@ function FileUploadArea(props: FileUploadAreaProps) {
   const [error, setError] = useState("");
   const [dragOver, setDragOver] = useState(false);
   const dropzoneRef = useRef<HTMLLabelElement>(null);
+  const { mode } = useContext(AppContext);
 
   const handleFileChange = useCallback(
     async (selectedFiles: FileList | null) => {
@@ -63,6 +66,7 @@ function FileUploadArea(props: FileUploadAreaProps) {
               const formData = new FormData();
               formData.append("file", file);
               formData.append("filename", file.name);
+              formData.append("mode", mode);
 
               try {
                 const processFileResponse = await axios.post(

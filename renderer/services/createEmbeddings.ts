@@ -9,14 +9,17 @@ export type Embeddings = {
 export async function createEmbeddings({
   text,
   maxCharLength,
+  mode = "cloud",
 }: {
   text: string;
   maxCharLength?: number;
+  mode?: "local" | "cloud" | "hybrid";
 }): Promise<Embeddings> {
   try {
     const textEmbeddings = await getEmbeddingsForText({
       text,
       maxCharLength,
+      mode,
     });
 
     // If there are 0 or 1 embeddings, the mean embedding is the same as the embedding

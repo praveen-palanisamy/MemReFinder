@@ -1,5 +1,6 @@
 import { FileLite, FileChunk } from "../types/file";
-import { embedding } from "./openai";
+// import { embedding } from "./openai";
+import { embedding } from "./embeddings";
 
 // This is the minimum cosine similarity score that a file must have with the search query to be considered relevant
 // This is an arbitrary value, and you should vary/ remove this depending on the diversity of your dataset
@@ -10,14 +11,17 @@ export async function searchFileChunks({
   searchQuery,
   files,
   maxResults,
+  mode = "cloud",
 }: {
   searchQuery: string;
   files: FileLite[];
   maxResults: number;
+  mode: "local" | "cloud" | "hybrid";
 }): Promise<FileChunk[]> {
   // Get the search query embedding
   const searchQueryEmbeddingResponse = await embedding({
     input: searchQuery,
+    mode: mode,
   });
 
   // Get the first element in the embedding array
@@ -25,7 +29,6 @@ export async function searchFileChunks({
     searchQueryEmbeddingResponse.length > 0
       ? searchQueryEmbeddingResponse[0]
       : [];
-
   // Rank the chunks by their cosine similarity to the search query (using dot product since the embeddings are normalized) and return this
   const rankedChunks = files
     // Map each file to an array of chunks with the file name and score
@@ -37,6 +40,7 @@ export async function searchFileChunks({
               (sum, val, i) => sum + val * searchQueryEmbedding[i],
               0
             );
+            // console.log("dotProduct:", dotProduct);
             // Assign the dot product as the score for the chunk
             return { ...chunk, filename: file.name, score: dotProduct };
           })

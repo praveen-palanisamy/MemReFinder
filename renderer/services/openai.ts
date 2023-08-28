@@ -1,4 +1,5 @@
 import { IncomingMessage } from "http";
+import { EmbeddingOptions } from "./embeddings";
 import {
   Configuration,
   CreateCompletionRequest,
@@ -20,11 +21,6 @@ export const openai = new OpenAIApi(configuration);
 type CompletionOptions = Partial<CreateCompletionRequest> & {
   prompt: string;
   fallback?: string;
-};
-
-type EmbeddingOptions = {
-  input: string | string[];
-  model?: string;
 };
 
 export async function completion({

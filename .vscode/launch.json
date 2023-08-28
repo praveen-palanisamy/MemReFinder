@@ -5,36 +5,22 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Nextron: Main",
       "type": "node",
-      "request": "attach",
-      "protocol": "inspector",
-      "port": 9292,
-      "skipFiles": ["<node_internals>/**"],
-      "sourceMapPathOverrides": {
-        "webpack:///./~/*": "${workspaceFolder}/node_modules/*",
-        "webpack:///./*": "${workspaceFolder}/*",
-        "webpack:///*": "*"
-      }
+      "request": "launch",
+      "name": "Debug Backend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run-script", "dev:desktop"],
+      "port": 3000,
+      "timeout": 30000
     },
     {
-      "name": "Nextron: Renderer",
-      "type": "chrome",
-      "request": "attach",
-      "port": 5858,
-      "timeout": 10000,
-      "urlFilter": "http://localhost:*",
-      "webRoot": "${workspaceFolder}/app",
-      "sourceMapPathOverrides": {
-        "webpack:///./src/*": "${webRoot}/*"
-      }
-    }
-  ],
-  "compounds": [
-    {
-      "name": "Nextron: All",
-      "preLaunchTask": "dev",
-      "configurations": ["Nextron: Main", "Nextron: Renderer"]
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run-script", "dev"],
+      "port": 3001,
+      "timeout": 30000
     }
   ]
 }

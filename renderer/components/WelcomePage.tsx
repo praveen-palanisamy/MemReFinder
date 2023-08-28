@@ -2,7 +2,7 @@ import { AppContext } from "@/pages/_app";
 import { useContext } from "react";
 
 interface AppMode {
-  mode: string;
+  mode: "Cloud" | "Hybrid" | "Local";
   description: string[];
   button: string;
   badges?: string[];
@@ -33,7 +33,7 @@ export default function WelcomePage() {
       "Requires an OpenAI API Key",
       "(optional) Sign-in to Save and Resume your work across sessions and devices. ",
     ],
-    button: "Coming Soon...",
+    button: "Start",
     badges: ["OpenAI API Key required"],
     imageSrc: "/images/hybrid.png",
   };
