@@ -26,7 +26,7 @@ export async function getEmbeddingsForText({
   for (let i = 0; i < textChunks.length; i += batchSize) {
     batches.push(textChunks.slice(i, i + batchSize));
   }
-
+  // console.log("getEmbeddingsForText::batches:", batches);
   try {
     const batchPromises = batches.map((batch) =>
       embedding({ input: batch, mode: mode })
@@ -38,7 +38,7 @@ export async function getEmbeddingsForText({
       embedding,
       text: textChunks[index],
     }));
-
+    // console.log("getEmbeddingsForText::textEmbeddings:", textEmbeddings);
     return textEmbeddings;
   } catch (error: any) {
     console.log("Error: ", error);
